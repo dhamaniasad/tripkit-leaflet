@@ -132,10 +132,10 @@ L.tripgoRouting.tripWidget = (function () {
         initialize : function(){
             if(! this.isVisible()) {
                 this.getWidget().style.display = "block";
-                this.getWidget().style.height = window.innerHeight;
+                // this.getWidget().style.height = window.innerHeight;
                 this.getWidget().appendChild(clearBtn());
 
-                L.tripgoRouting.mapLayer.mapResize(window.innerWidth - this.getWidth(), L.tripgoRouting.mapLayer.height);
+                // L.tripgoRouting.mapLayer.mapResize(window.innerWidth - this.getWidth(), L.tripgoRouting.mapLayer.height);
             }
         },
 

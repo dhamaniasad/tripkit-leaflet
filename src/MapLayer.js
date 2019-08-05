@@ -75,10 +75,11 @@ L.tripgoRouting.mapLayer = (function(){
             options = checkOptions(options);
 
             mapId = options.mapId;
-            map = L.map(mapId).setView([options.mapCenter.lat,options.mapCenter.lng], 13);
+            // map = L.map(mapId).setView([options.mapCenter.lat,options.mapCenter.lng], 13);
+            map = window.map;
             (options.googleTile === undefined || options.googleTile) ? setGoogleTile() : setOSMTile();
 
-            this.mapResize(window.innerWidth, window.innerHeight);
+            // this.mapResize(window.innerWidth, window.innerHeight);
             map.on('click', this.fromClick);
 
             tripgoApiKey = options.tripgoApiKey;
@@ -94,10 +95,10 @@ L.tripgoRouting.mapLayer = (function(){
 
             document.body.insertBefore(tripsPanel, L.DomUtil.get(mapId));
 
-            L.DomEvent.on(window, "resize",function () {
-                L.tripgoRouting.mapLayer.mapResize((window.innerWidth - L.tripgoRouting.tripWidget.getWidth()), window.innerHeight);
-                L.tripgoRouting.tripWidget.getWidget().style.height = window.innerHeight + "px";
-            });
+            // L.DomEvent.on(window, "resize",function () {
+            //     L.tripgoRouting.mapLayer.mapResize((window.innerWidth - L.tripgoRouting.tripWidget.getWidth()), window.innerHeight);
+            //     L.tripgoRouting.tripWidget.getWidget().style.height = window.innerHeight + "px";
+            // });
         },
 
         getMapId : function(){
@@ -132,13 +133,13 @@ L.tripgoRouting.mapLayer = (function(){
         },
 
         fromClick : function(e){
-            if(!L.tripgoRouting.mapLayer.showingTrip()) {
-                let latlng = L.latLng(e.latlng.lat, e.latlng.lng);
-                L.popup()
-                    .setLatLng(latlng)
-                    .setContent(popUpSelector(e.latlng))
-                    .openOn(L.tripgoRouting.mapLayer.getMap());
-            }
+            // if(!L.tripgoRouting.mapLayer.showingTrip()) {
+            //     let latlng = L.latLng(e.latlng.lat, e.latlng.lng);
+            //     L.popup()
+            //         .setLatLng(latlng)
+            //         .setContent(popUpSelector(e.latlng))
+            //         .openOn(L.tripgoRouting.mapLayer.getMap());
+            // }
         },
 
         createMarker : function(where, lat, lng){

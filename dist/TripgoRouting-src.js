@@ -103,10 +103,11 @@ L.tripgoRouting.mapLayer = function () {
             options = checkOptions(options);
 
             mapId = options.mapId;
-            map = L.map(mapId).setView([options.mapCenter.lat, options.mapCenter.lng], 13);
+            // map = L.map(mapId).setView([options.mapCenter.lat,options.mapCenter.lng], 13);
+            map = window.map;
             options.googleTile === undefined || options.googleTile ? setGoogleTile() : setOSMTile();
 
-            this.mapResize(window.innerWidth, window.innerHeight);
+            // this.mapResize(window.innerWidth, window.innerHeight);
             map.on('click', this.fromClick);
 
             tripgoApiKey = options.tripgoApiKey;
@@ -119,10 +120,10 @@ L.tripgoRouting.mapLayer = function () {
 
             document.body.insertBefore(tripsPanel, L.DomUtil.get(mapId));
 
-            L.DomEvent.on(window, "resize", function () {
-                L.tripgoRouting.mapLayer.mapResize(window.innerWidth - L.tripgoRouting.tripWidget.getWidth(), window.innerHeight);
-                L.tripgoRouting.tripWidget.getWidget().style.height = window.innerHeight + "px";
-            });
+            // L.DomEvent.on(window, "resize",function () {
+            //     L.tripgoRouting.mapLayer.mapResize((window.innerWidth - L.tripgoRouting.tripWidget.getWidth()), window.innerHeight);
+            //     L.tripgoRouting.tripWidget.getWidget().style.height = window.innerHeight + "px";
+            // });
         },
 
         getMapId: function () {
@@ -155,10 +156,13 @@ L.tripgoRouting.mapLayer = function () {
         },
 
         fromClick: function (e) {
-            if (!L.tripgoRouting.mapLayer.showingTrip()) {
-                let latlng = L.latLng(e.latlng.lat, e.latlng.lng);
-                L.popup().setLatLng(latlng).setContent(popUpSelector(e.latlng)).openOn(L.tripgoRouting.mapLayer.getMap());
-            }
+            // if(!L.tripgoRouting.mapLayer.showingTrip()) {
+            //     let latlng = L.latLng(e.latlng.lat, e.latlng.lng);
+            //     L.popup()
+            //         .setLatLng(latlng)
+            //         .setContent(popUpSelector(e.latlng))
+            //         .openOn(L.tripgoRouting.mapLayer.getMap());
+            // }
         },
 
         createMarker: function (where, lat, lng) {
@@ -337,7 +341,7 @@ L.tripgoRouting.routeService = function () {
         * */
         route: function (tripgoApiKey, from, to) {
             if (L.tripgoRouting.validLatLng(from) && L.tripgoRouting.validLatLng(to)) {
-                L.tripgoRouting.mapLayer.getMessenger().info("getting routes form SkedGo server ...");
+                L.tripgoRouting.mapLayer.getMessenger().info("Getting routes");
                 let multimodal = "";
                 transportModes.forEach(function (mode) {
                     let url = getUrl(from, to, "&modes[]=" + mode);
@@ -636,10 +640,10 @@ L.tripgoRouting.tripWidget = function () {
         initialize: function () {
             if (!this.isVisible()) {
                 this.getWidget().style.display = "block";
-                this.getWidget().style.height = window.innerHeight;
+                // this.getWidget().style.height = window.innerHeight;
                 this.getWidget().appendChild(clearBtn());
 
-                L.tripgoRouting.mapLayer.mapResize(window.innerWidth - this.getWidth(), L.tripgoRouting.mapLayer.height);
+                // L.tripgoRouting.mapLayer.mapResize(window.innerWidth - this.getWidth(), L.tripgoRouting.mapLayer.height);
             }
         },
 
