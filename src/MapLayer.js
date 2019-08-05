@@ -77,7 +77,7 @@ L.tripgoRouting.mapLayer = (function(){
             mapId = options.mapId;
             // map = L.map(mapId).setView([options.mapCenter.lat,options.mapCenter.lng], 13);
             map = window.map;
-            (options.googleTile === undefined || options.googleTile) ? setGoogleTile() : setOSMTile();
+            // (options.googleTile === undefined || options.googleTile) ? setGoogleTile() : setOSMTile();
 
             // this.mapResize(window.innerWidth, window.innerHeight);
             map.on('click', this.fromClick);
